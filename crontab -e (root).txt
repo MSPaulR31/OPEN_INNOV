@@ -1,1 +1,0 @@
-"minutes" "heures" * * * /home/debian/save_BD/backup_script.sh
