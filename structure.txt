@@ -1,0 +1,55 @@
+-- Suppression des tables 
+
+DROP TABLE vins;
+DROP TABLE clients;
+DROP TABLE vignerons;
+DROP TABLE regions;
+DROP TABLE appellations;
+
+-- Création des tables
+
+CREATE TABLE clients (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  nom VARCHAR(20) NOT NULL,
+  prenom VARCHAR(20) NOT NULL,
+  age INT NOT NULL,
+  ville VARCHAR(50) NOT NULL,
+  tel VARCHAR(20) NOT NULL,
+  conso_vin VARCHAR(100) NOT NULL,
+  occas_vin VARCHAR(100) NOT NULL,
+  choix_vin VARCHAR(100) NOT NULL,
+  comment_vin VARCHAR(255) NOT NULL,
+  achat_vin VARCHAR(100) NOT NULL);
+
+CREATE TABLE vignerons (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  nom VARCHAR(20) NOT NULL,
+  prenom VARCHAR(20) NOT NULL,
+  mail VARCHAR(50) NOT NULL,
+  tel VARCHAR(20) NOT NULL,
+  ville VARCHAR(50) NOT NULL,
+  cepages VARCHAR(50) NOT NULL,
+  vente_vin VARCHAR(100) NOT NULL,
+  comment_vin VARCHAR(255) NOT NULL,
+  marge_vin VARCHAR(100) NOT NULL,
+  commentaire VARCHAR(255) NOT NULL);
+
+CREATE TABLE regions(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regions VARCHAR(100) NOT NULL);
+
+CREATE TABLE appellations(
+    id INT NOT NULL PRIMARY KEY  AUTO_INCREMENT,
+    appellations VARCHAR(100) NOT NULL);
+
+CREATE TABLE vins (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  regions_id INT NOT NULL,
+  appellations_id INT NOT NULL,
+  cepages VARCHAR(50) NOT NULL,
+  nom VARCHAR(50) NOT NULL,
+  couleur VARCHAR(20) NOT NULL,
+  annee INT NOT NULL,
+  prix VARCHAR(20) NOT NULL,
+  CONSTRAINT fk_regions FOREIGN KEY(regions_id) REFERENCES regions(id),
+  CONSTRAINT fk_appellations FOREIGN KEY(appellations_id) REFERENCES appellations(id));
