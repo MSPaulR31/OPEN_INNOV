@@ -1,0 +1,16 @@
+!/bin/bash
+
+# Informations de connexion à la BDD
+DB_HOST="192.168.1.36"
+DB_USER="backup"
+DB_PASSWORD="debian"
+DB_NAME="open_innov"
+
+# Chemin vers le dossier contenant les fichiers de sauvegarde SQL
+BACKUP_DIR="/home/debian/save_BD"
+
+# Trouver le dernier fichier de sauvegarde SQL dans le dossier
+BACKUP_FILE=$(ls -t $BACKUP_DIR/*.sql | head -n 1)
+
+# Restaurer la base de données à partir du fichier de sauvegarde
+mysql --host=$DB_HOST --user=$DB_USER --password=$DB_PASSWORD $DB_NAME < $BACKUP_FILE
